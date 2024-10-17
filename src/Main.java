@@ -10,11 +10,9 @@ public static void main() {
             Введите 4, чтобы протестировать Задание 4
             """);
     int Variant = scanner.nextInt();
-    if (Variant == 3){
-        TriangleType();
-    } else if (Variant == 4){
-        
-    }else System.out.println("Такого задания нет!!!");
+    if (Variant == 3)TriangleType();
+    else if (Variant == 4)QuadraticEquationSolver();
+    else System.out.println("Такого задания нет!!!");
 }
 private static void TriangleType() {
 
@@ -58,4 +56,36 @@ public static boolean isRightTriangle(int a, int b, int c) {
     int[] sides = {a, b, c};
     java.util.Arrays.sort(sides);
     return (Math.abs(Math.pow(sides[0], 2) + Math.pow(sides[1], 2) - Math.pow(sides[2], 2)) < 1e-9);
+}
+    public static void QuadraticEquationSolver() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите коэффициент a: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Введите коэффициент b: ");
+        double b = scanner.nextDouble();
+
+        System.out.print("Введите коэффициент c: ");
+        double c = scanner.nextDouble();
+
+        solveQuadraticEquation(a, b, c);
+    }
+    public static void solveQuadraticEquation(double a, double b, double c) {
+        if (a == 0) {
+            System.out.println("Коэффициент a не должен быть равен 0.");
+            return;
+        }
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant > 0) {
+            double x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            System.out.println("Уравнение имеет два корня: x1 = " + x1 + ", x2 = " + x2);
+        } else if (discriminant == 0) {
+            double x = -b / (2 * a);
+            System.out.println("Уравнение имеет один корень: x = " + x);
+        } else {
+            System.out.println("Уравнение не имеет действительных корней.");
+        }
 }
